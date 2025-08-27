@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 // 이곳은 서버 api를 정의하는 곳이라고 할 수 있다.(입력값에 따라 어떤 출력물이 나오는지 정하는 것)
 @RequestMapping("/fruit")
 @Controller
+
 public class TestController3 {
 	
 	@GetMapping("/apple")
