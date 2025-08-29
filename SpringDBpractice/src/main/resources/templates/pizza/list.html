@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>피자리스트</title>
+	<link rel="stylesheet" href="/pizza/css/list.css">
+</head>
+<body>
+	<h1>여기는 피자목록</h1>
+	
+	<div id="pizza_table" th:each="piz: ${pizzas}">
+		<div th:text="${piz.pizza_id}"></div>
+		<div th:text="${piz.pizza_name}"></div>
+		<div th:text="${#dates.format(piz.made_date, 'yyyy-MM-dd')}"></div>
+		<div>
+			<button class="modi_btn" th:data-id="${piz.pizza_id}">수정</button>
+			<button class="del_btn" th:data-id="${piz.pizza_id}")>삭제</button>
+			<form action="./delete", method="POST">
+				<input type="hidden" name="pizza_id" th:value="${piz.pizza_id}">
+			</form>
+		</div>
+	</div>
+	
+	<div>
+		<button onclick="location.href='./add';">새 피자 굽기...</button>
+	</div>
+	
+	
+	<script src="/pizza/js/list.js"></script>
+</body>
+</html>

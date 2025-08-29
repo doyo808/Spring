@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title th:text="${pizza.pizza_id} + '번 상품 수정'"></title>
+</head>
+<body>
+	<h1>여기는 수정하는 곳</h1>
+	
+	<form id="f" action="./modify" method="POST">
+		id: <input type="text" name="pizza_id" th:value="${pizza.pizza_id}" readonly> <br> 
+		이름: <input type="text" name="pizza_name" th:value="${pizza.pizza_name}"> <br>
+		만든날짜: <input type="date" name="made_date" th:value="${#dates.format(pizza.made_date, 'yyyy-MM-dd')}"> <br>
+	</form>
+	
+	<button type="submit" form="f">수정하기</button>
+	<button onclick="location.href='/pizza/list'">목록으로</button>
+	
+	<h3>시간 보내보기 (DTO로 바인딩 확인 테스트)</h3>
+	<form action="./timetest" method="POST">
+		<input type="date" name="regist_date"><br>
+		<input type="datetime-local" name="regist_date2">
+		<input type="submit" value="테스트!">
+	</form>
+	
+	<h3>시간 보내보기2 (DTO로 바인딩 확인 테스트)</h3>
+		<form action="./timetest2" method="POST">
+			<input type="date" name="regist_date"><br>
+			<input type="datetime-local" name="regist_date2">
+			<input type="submit" value="테스트!">
+		</form>
+	
+</body>
+</html>

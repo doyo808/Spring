@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>피자 굽기</title>
+</head>
+<body>
+	
+	<form id="f" action="" method="POST">
+		이름:
+		<select name="pizza_name">
+			<option th:each="pname: ${pizzaNames}" th:value="${pname}" th:text="${pname}"></option>
+		</select><br>
+		만든날짜:
+		<input type="date" name="made_date" 
+		th:value="${#temporals.format(today, 'yyyy-MM-dd')}"><br>
+	</form>
+	
+	<button id="btn1">등록 ver.1</button>
+	<button id="btn2">등록 ver.2</button>
+	
+	<script>
+		console.log('연결됨');
+		const btn1 = document.getElementById('btn1');
+		const btn2 = document.getElementById('btn2');
+		const form = document.getElementById('f');
+		
+		btn1.addEventListener('click', (e) => {
+			console.log('1눌렷음');
+			f.action = './add1';
+			form.submit();
+		});
+		btn2.addEventListener('click', (e) => {
+			console.log('2눌렷음');
+			f.action = './add2';
+			form.submit();
+		});
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Pizzas">
+  <select id="selectAll" resultType="pzz">
+    SELECT * FROM pizzas ORDER BY pizza_id
+  </select>
+  <select id="selectOne" resultType="pzz">
+  	SELECT * FROM pizzas WHERE pizza_id = #{id}
+  </select>
+  
+  <delete id="deleteById" parameterType="Integer">
+  	DELETE FROM pizzas WHERE pizza_id = #{pizza_id}
+  </delete>
+  
+  <update id="modify" parameterType="java.util.HashMap">
+  	UPDATE pizzas 
+  	SET 
+  		pizza_name = #{pizza_name},
+  		made_date = #{made_date}
+	WHERE
+		pizza_id = #{pizza_id}
+  </update>
+  
+  <insert id="add1" parameterType="pzz">
+  	INSERT INTO pizzas (pizza_id, pizza_name, made_date) 
+  	VALUES(pizzas_seq.nextval, #{pizza_name}, #{made_date})
+  </insert>
+  
+  <!-- 
+	insert ver2: insert 하기 전에 키를 먼저 뽑는 방식
+	이 insert의 실행 결과로, 방금 삽입한 튜플의 Primary Key를 얻을 수 있다
+  -->
+  <insert id="add2" parameterType="pzz">
+  	<selectKey keyProperty="pizza_id" resultType="Integer" order="BEFORE">
+  		SELECT pizzas_seq.nextval FROM dual
+  	</selectKey>
+	  	INSERT INTO pizzas (pizza_id, pizza_name, made_date) 
+	  	VALUES(#{pizza_id}, #{pizza_name}, #{made_date})
+  </insert>
+  
+  
+</mapper>
