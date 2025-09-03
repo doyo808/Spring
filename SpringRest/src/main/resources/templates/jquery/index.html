@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>JQuery 살펴보기</title>
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="/fonts.css">
+</head>
+<body>
+	
+	<h3>JQuery!</h3>
+	
+	<div id="out"></div>
+	<div id="out2"></div>
+	
+	<button id="reqBtn">랜덤 강아지 뽑기!</button>
+	
+	
+	<script>
+		const out = $('#out')
+		const out2 = $('#out2')
+		out.html('<h2>html(): 안에 내용 넣기 innerHTML</h2>');
+		out2.text('<h2>text(): 안에 내용 넣기 innerHTML</h2>');
+		
+		// prop(): 해당 요소에 원하는 속성을 추가한다
+		out.prop('title', 'prop() + title: 마우스를 올리고 있으면 말풍선이 나옴');
+		out.prop('style', 'background-color: green;');
+		
+		// css(): 해당 요소에 css를 추가한다
+		out.css('color', 'white');
+		out.css('font-size', '20px');
+		
+		// click(): 클릭 이벤트 리스너 부착
+		$('#out').click(e => {e.target.style.backgroundColor='red'});
+		
+		// on(): 원하는 이벤트 선택하고 리스너 부착
+		$('#out').on('mouseleave', (e) => {
+			e.target.style.backgroundColor='green'
+		});
+		
+		$('#reqBtn').click((e) => {
+			const ajaxSettings = {
+				url: '/jquery/animal/dog',
+				method: 'GET',
+				dataType: 'json',
+				success: (data, status, xhttp) => {
+					console.log('받은 데이터(responseText를 dataType으로 파싱한 결과): ', data);
+					console.log('상태 코드: ', status);
+					console.log('xhttp 객체: ', xhttp);
+					console.log('원래 방식대로 꺼내기: ', xhttp.responseText);
+					
+					out.append(`<div>${data.name}/${data.age}/${data.kind}</div>`);
+				}
+			};
+			$.ajax(ajaxSettings);
+		});
+		
+	</script>
+</body>
+</html>

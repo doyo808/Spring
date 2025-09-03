@@ -11,5 +11,6 @@
 	<!-- 여기는 변수설정 -->
   <typeAliases>
   	<typeAlias type="com.kd.springdatabase.dto.Employee" alias="emp"></typeAlias>
+  	<typeAlias type="com.kd.springdatabase.board.dto.BoardDTO" alias="boardDTO"></typeAlias>
   </typeAliases>
 </configuration>

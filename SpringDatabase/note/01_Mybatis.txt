@@ -26,7 +26,7 @@
 			# 연결이 만료되는 시간 설정(기본값: 600000, 10분)
 				spring.datasource.hikari.idle-timeout=3600000
 				
-	(3) mybatis 설정 파일의 위치에 대한 설정
+	(3) mybatis 설정 파일의 위치에 대한 설정 (mybatis-config.xml)
 		<?xml version="1.0" encoding="UTF-8" ?>
 		<!DOCTYPE configuration
 		  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
